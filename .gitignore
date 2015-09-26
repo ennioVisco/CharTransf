@@ -1,8 +1,9 @@
+/vendor
 /node_modules
 Homestead.yaml
 Homestead.json
 .env
-.env.example
-nbproject/private/private.properties
-nbproject/private/config.properties
 nbproject/private/private.xml
+nbproject/private/private.properties
+nbproject/
+.env.example
