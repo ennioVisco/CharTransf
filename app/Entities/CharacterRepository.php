@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace App;
 
 /**
  * This interface provides the abstract representation of the Character
@@ -23,7 +24,27 @@
  * 
  * @author Polaretto
  */
-interface CharacterInterface {
+interface CharacterRepository {
+    
+    /**
+     * Represents the minimum data needed to create a new character acceptable
+     * by the game
+     * 
+     * @param string $name
+     * @param int $level
+     * @param Account $account
+     * @param type $gender
+     * @param CHR_CLASS $class
+     * @param Race $race
+     * @param int $money
+     * @param int $honorPoints
+     * @param int $arenaPoints
+     * @param int $totalKills
+     * @param int $talentSpecsCount
+     */
+    public function __construct(string $name, int $level, Account $account, 
+            $gender, CHR_CLASS $class, Race $race, int $money = 0, int $honorPoints = 0, 
+            int $arenaPoints = 0, int $totalKills = 0, int $talentSpecsCount = 0);
     
     /**
      * Gets the name of the character
@@ -31,14 +52,6 @@ interface CharacterInterface {
      * @return string 
      */
     public function getName();
-    
-    /**
-     * Assigns a name to the character
-     * 
-     * @param string
-     * @return void 
-     */
-    public function setName(string $name);
     
     /**
      * Gets the level of the character
@@ -49,6 +62,7 @@ interface CharacterInterface {
     
     /**
      * Assigns a level to the character
+     * [1, 255]: values must be between 1 and 255 
      * 
      * @param int
      * @return void 
@@ -63,27 +77,11 @@ interface CharacterInterface {
     public function getGender();
     
     /**
-     * Assigns a GENDER to the character
-     * 
-     * @param GENDER
-     * @return void 
-     */
-    public function setGender(GENDER $gender);
-    
-    /**
      * Gets the (WoW)Class of the character
      * 
      * @return WoWClass
      */
     public function getClass();
-    
-    /**
-     * Assigns a (WoW)Class to the character
-     * 
-     * @param WoWClass
-     * @return void 
-     */
-    public function setClass(WoWClass $class);
     
     /**
      * Gets the race of the character
@@ -93,14 +91,6 @@ interface CharacterInterface {
     public function getRace();
     
     /**
-     * Assigns a race to the character
-     * 
-     * @param Race
-     * @return void 
-     */
-    public function setRace(Race $race);
-    
-    /**
      * Gets the amount of money of the character
      * 
      * @return int
@@ -108,12 +98,12 @@ interface CharacterInterface {
     public function getMoney();
     
     /**
-     * Assigns an amount of money to the character
+     * Gives an amount of money to the character
      * 
      * @param int
      * @return void 
      */
-    public function setMoney(int $amount);
+    public function giveMoney(int $amount);
     
     /**
      * Gets the honor of the character
@@ -128,7 +118,7 @@ interface CharacterInterface {
      * @param int
      * @return void 
      */
-    public function setHonor(int $amount);
+    public function assignHonor(int $amount);
     
     /**
      * Gets the arena points of the character
@@ -143,7 +133,7 @@ interface CharacterInterface {
      * @param int
      * @return void 
      */
-    public function setArenaPoints(int $amount);
+    public function assignArenaPoints(int $amount);
     
     /**
      * Gets character's Inventory
